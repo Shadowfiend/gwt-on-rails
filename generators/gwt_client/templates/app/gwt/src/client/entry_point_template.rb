@@ -1,11 +1,18 @@
 package <%= gwt_entry_point_package %>;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
+
+import com.kaboomerang.gwt.rest.client.resource.*;
+import com.kaboomerang.gwt.rest.client.resource.impl.*;
+import com.kaboomerang.gwt.rest.client.handler.*;
+import com.kaboomerang.gwt.rest.client.callback.*;
+import com.kaboomerang.gwt.rest.client.uri.*;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
