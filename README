@@ -27,9 +27,8 @@ following:
 1) Download GWT from http://code.google.com/webtoolkit and set a $GWT_HOME
    environment variable that points to it's location on your file system.
 
-2) Generate the client, passing along the name and the location of your
-   GWT libs:
-> script/generate gwt_client dashboard /Users/jdoe/java_libs/gwt-mac-1.4.61
+2) Generate the client, passing along the desired GWT project name:
+> script/generate gwt_client dashboard
 
 3) Compile it:
 > rake dashboard:compile
@@ -51,7 +50,8 @@ Using Migrations to Manage GWT Client Resources/Models
 
 To use an ActiveRecord "Project" model on the client side, do the following:
 
-1) Generate the GWT model/resource
+1) Generate the GWT model/resource by passing in the name of the ActiveRecord
+   model and the desired GWT project name:
 > script/generate gwt_resource Project dashboard
 
 2) Sync it
