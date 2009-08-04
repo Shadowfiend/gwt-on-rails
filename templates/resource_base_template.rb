@@ -26,10 +26,10 @@ import java.beans.PropertyChangeSupport;
 public class <%= gwt_resource_name %>Base implements Resource {
     protected PropertyChangeSupport changes = new PropertyChangeSupport(this);
 <%- if properties.values.detect { |n| n == 'Date' } -%>
-    protected DateTimeFormat dateTimeFormat = DateTimeFormat.getFormat("yyyy/MM/dd HH:mm:ss ZZZZ");
+    protected DateTimeFormat dateTimeFormat = DateTimeFormat.getFormat("yyyy-MM-dd HH:mm:ss");
 <%- end -%>
 <%- if properties.values.detect { |n| n == 'DateOnly' } -%>
-    protected DateTimeFormat dateOnlyFormat = DateTimeFormat.getFormat("yyyy/MM/dd");
+    protected DateTimeFormat dateOnlyFormat = DateTimeFormat.getFormat("yyyy-MM-dd");
 <%- end -%>
 <%- properties.keys.each do |k| -%>
     protected <%= properties[k].sub('Only', '') %> <%= k %>;
@@ -51,11 +51,31 @@ public class <%= gwt_resource_name %>Base implements Resource {
       else -%>
  else if<%- end -%> ("<%= k.underscore %>".equals(key)) {
      <%- if properties[k] == 'int' -%>
-                this.<%= k %> = new Double(json.get(key).isNumber().getValue()).intValue();
+                JSONNumber js = json.get(key).isNumber();
+                if (js != null) {
+                    this.<%= k %> = new Double(json.get(key).isNumber().getValue()).intValue();
+                } else {
+                    this.<%= k %> = 0;
+                }
      <%- elsif properties[k] == 'boolean' -%>
-                this.<%= k %> = json.get(key).isBoolean().booleanValue();
+                JSONNumber js = json.get(key).isNumber();
+                if (js != null) {
+                    int boolNumber = new Double(json.get(key).isNumber().getValue()).intValue();
+                    if(boolNumber == 1)
+                        this.<%= k %> = true;
+                    else {
+                        this.<%= k %> = false;
+                    }
+                } else {
+                    this.<%= k %> = false;
+                }
      <%- elsif properties[k] == 'double' -%>
-                this.<%= k %> = json.get(key).isNumber().getValue();
+                JSONNumber js = json.get(key).isNumber();
+                if (js != null) {
+                    this.<%= k %> = json.get(key).isNumber().getValue();
+                } else {
+                    this.<%= k %> = 0;
+                }
      <%- elsif properties[k] == 'DateOnly' -%>
                 JSONString js = json.get(key).isString();
                 if (js != null) {

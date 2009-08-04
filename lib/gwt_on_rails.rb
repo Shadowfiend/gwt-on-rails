@@ -30,7 +30,9 @@ module ActiveRecord
   class SchemaDumper
     include GwtOnRails
     alias_method :dump_gwt_copy, :dump
-  
+    
+    RESERVED_JAVA_KEYWORDS = ["abstract", "continue", "for", "new", "switch", "assert", "default", "goto", "package", "synchronized", "boolean", "do", "if", "private", "this", "break", "double", "implements", "protected", "throw", "byte", "else", "import", "public", "throws", "case", "enum", "instanceof", "return", "transient", "catch", "extends", "int", "short", "try", "char", "final", "interface", "static", "void", "class", "finally", "long", "strictfp", "volatile", "const", "float", "native", "super", "while"]
+    
     def dump(stream)
       dump_gwt_copy(stream)
       create_models_from_tables
@@ -89,7 +91,16 @@ module ActiveRecord
     
     def java_property_name(column)
       s = column.name.inspect.to_s.gsub('"', '').camelize
-      return s.sub(s.first, s.first.downcase)
+      s = s.sub(s.first, s.first.downcase)
+      if is_reserved_java_keyword? s
+        return "r_#{s}"
+      else
+        return s
+      end
+    end
+    
+    def is_reserved_java_keyword?(s)
+      return RESERVED_JAVA_KEYWORDS.include?(s)
     end
     
     def java_mapping(column_type)
