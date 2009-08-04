@@ -21,6 +21,12 @@ class GwtClientGenerator < Rails::Generator::NamedBase
     @gwt_module = gwt_client.module
     @gwt_client_path = gwt_client.path
   end
+  
+  def gsub_file(relative_destination, regexp, *args, &block)
+    path = destination_path(relative_destination)
+    content = File.read(path).gsub(regexp, *args, &block)
+    File.open(path, 'wb') { |file| file.write(content) }
+  end
     
   def manifest
     record do |m|
@@ -67,7 +73,12 @@ class GwtClientGenerator < Rails::Generator::NamedBase
       # create Rake tasks to management development
       m.template "lib/tasks/rake_template.rb",
                  "lib/tasks/#{file_name}_tasks.rake"
-                 
+      
+      sentinel = 'ActionController::Routing::Routes.draw do |map|'
+      gsub_file 'config/routes.rb', /(#{Regexp.escape(sentinel)})/mi do |match|
+        "#{match}\n  map.#{file_name} '/#{file_name}', :controller => '#{file_name}', :action => 'index'\n"
+      end
+      
       # mention helpful plugins, etc.
       m.readme "POST_GENERATION_REMINDER"
     end

@@ -22,7 +22,7 @@ fi
 # Specify our classpaths and included jars
 SRCDIR="$CURDIR/src/<%= file_name.downcase.gsub('_', '') %>"
 REQUIRED_LIBS="$CURDIR/src:$CURDIR/bin:$GWT_HOME/gwt-user.jar:$GWT_HOME/$GWT_OS_JAR"
-VENDOR_LIBS="$CURDIR/lib/gwt-rest.jar:$CURDIR/lib/gwtx-1.5.2.jar" # append additional entries here
+VENDOR_LIBS="$CURDIR/lib/gwt-rest.jar:$CURDIR/lib/gwtx.jar" # append additional entries here
 
 # Run the GWT Compiler
-java $GWT_FLAGS -Xmx256M -classpath "$REQUIRED_LIBS:$SRCDIR:$VENDOR_LIBS" com.google.gwt.dev.HostedMode -war "$ROOTDIR/public/gwt" -gen "$ROOTDIR/public/gwt" "$@" -noserver -port $GWT_PORT <%= file_name.camelize %>;
+java $GWT_FLAGS -Xmx256M -classpath "$REQUIRED_LIBS:$SRCDIR:$VENDOR_LIBS" com.google.gwt.dev.HostedMode -war "$ROOTDIR/public/gwt" -gen "$ROOTDIR/public/gwt" "$@" -noserver -startupUrl <%= file_name %> -port $GWT_PORT <%= file_name.camelize %>;

@@ -15,7 +15,7 @@ fi
 
 # Specify our classpaths and included jars
 REQUIRED_LIBS="$CURDIR/src:$CURDIR/bin:$GWT_HOME/gwt-user.jar:$GWT_HOME/$GWT_OS_JAR"
-VENDOR_LIBS="$CURDIR/lib/gwt-rest.jar:$CURDIR/lib/gwtx-1.5.2.jar" # append additional entries here
+VENDOR_LIBS="$CURDIR/lib/gwt-rest.jar:$CURDIR/lib/gwtx.jar" # append additional entries here
 
 # Run the GWT Compiler
 java $GWT_FLAGS -Xmx256M -classpath "$REQUIRED_LIBS:$VENDOR_LIBS" com.google.gwt.dev.Compiler -war "$ROOTDIR/public/gwt" -gen "$ROOTDIR/public/gwt" "$@" <%= gwt_module %>;
