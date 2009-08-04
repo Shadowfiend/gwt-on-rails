@@ -12,6 +12,6 @@ namespace :<%= file_name %> do
   
   desc "clean compiled javascript"
   task :clean => :environment do
-    rm_rf("<%= RAILS_ROOT %>/public/gwt/<%= gwt_module %>")
+    rm_rf("#{RAILS_ROOT}/public/gwt/<%= gwt_module %>")
   end
 end

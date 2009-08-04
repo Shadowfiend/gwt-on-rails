@@ -15,7 +15,7 @@ with Rails REST web services by providing four things:
 1) A GWT client generator
 2) A GWT model generator
 3) An ActiveRecord extension to keep GWT models in sync with ActiveRecord models
-4) The GWT-REST module (see http://code.google.com/p/gwt-rest/)
+4) The GWT-REST module (see http://github.com/digitaria/gwt-rest and http://code.google.com/p/gwt-rest/)
 
 -------------------------------------------------------------------------------
 Using the Client Generator and Rake Support
@@ -24,9 +24,8 @@ Using the Client Generator and Rake Support
 To build a JavaScript REST client for your app using GWT, do the
 following:
 
-1) Install the JSON Request plugin from Labnotes to make your life easier:
-
-http://blog.labnotes.org/2007/12/11/json_request-handling-json-request-in-rails-20/
+1) Download GWT from http://code.google.com/webtoolkit and set a $GWT_HOME
+   environment variable that points to it's location on your file system.
 
 2) Generate the client, passing along the name and the location of your
    GWT libs:
@@ -68,4 +67,5 @@ can thus be used to hold custom code.
 The use of GWT-REST to manage collections of resources on the client side will
 be documented as part of the independent GWT-REST Google Code project:
 
+http://github.com/digitaria/gwt-rest
 http://code.google.com/p/gwt-rest/

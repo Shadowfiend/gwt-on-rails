@@ -23,10 +23,6 @@ The source is in app/gwt/your_gwt_client_name.
 The compiled code will appear under public/gwt/YourGwtModuleName
 i.e public/gwt/dashboard.Dashboard
 
-In order to use the included GWT-REST module with the default Rails
-scaffolding, check out the json_request plugin from Labnotes:
-
-http://blog.labnotes.org/2007/12/11/json_request-handling-json-request-in-rails-20/
 
 ===============================================================================
 

@@ -21,17 +21,7 @@ class GwtClientGenerator < Rails::Generator::NamedBase
     @gwt_module = gwt_client.module
     @gwt_client_path = gwt_client.path
   end
-  
-  def gwt_dev_platform
-    if RUBY_PLATFORM =~ /mswin|mingw|bccwin|wince/
-      'win'
-    elsif RUBY_PLATFORM =~ /darwin/
-      'mac'
-    else
-      'linux' # TODO map out possibilities and allow user to override
-    end
-  end
-  
+    
   def manifest
     record do |m|
       m.class_collisions class_name
