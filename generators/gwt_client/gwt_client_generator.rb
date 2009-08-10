@@ -55,7 +55,11 @@ class GwtClientGenerator < Rails::Generator::NamedBase
       # add GWTx
       m.file "app/gwt/lib/gwtx.jar",
              "app/gwt/#{file_name}/lib/gwtx.jar"
-                
+      
+      # add new JSON parser
+      m.file "app/gwt/lib/jsonwrapper-0.1.jar",
+             "app/gwt/#{file_name}/lib/jsonwrapper-0.1.jar"
+      
       # build controller, helper and template for GWT module container
       m.template "app/controllers/controller_template.rb",
                  "app/controllers/#{file_name}_controller.rb"

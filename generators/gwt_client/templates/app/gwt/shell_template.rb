@@ -22,8 +22,8 @@ RESOURCE_DIR="$RESOURCE_DIR:$CURDIR/../press/src/press"
 
 # Specify our classpaths and included jars
 SRCDIR="$CURDIR/src/<%= file_name.downcase.gsub('_', '') %>"
-REQUIRED_LIBS="$CURDIR/src:$CURDIR/bin:$GWT_HOME/gwt-user.jar:$GWT_HOME/$GWT_OS_JAR:$RESOURCE_DIR"
-VENDOR_LIBS="$CURDIR/lib/gwt-rest.jar:$CURDIR/lib/gwtx.jar" # append additional entries here
+REQUIRED_LIBS="$CURDIR/src:$CURDIR/bin:$GWT_HOME/gwt-user.jar:$GWT_HOME/$GWT_OS_JAR"
+VENDOR_LIBS="$CURDIR/lib/gwt-rest.jar:$CURDIR/lib/gwtx.jar:$CURDIR/lib/jsonwrapper-0.1.jar" # append additional entries here
 
 # Run the GWT Compiler
 java $GWT_FLAGS -Xmx512M -classpath "$REQUIRED_LIBS:$SRCDIR:$VENDOR_LIBS" com.google.gwt.dev.HostedMode -war "$ROOTDIR/public/gwt" -gen "$ROOTDIR/public/gwt" "$@" -noserver -startupUrl <%= file_name %> -style PRETTY -loglevel ALL -port $GWT_PORT <%= "#{file_name.camelize.downcase}.#{file_name.camelize} %>;
