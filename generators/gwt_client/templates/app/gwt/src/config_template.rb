@@ -14,6 +14,9 @@
   <inherits name='com.google.gwt.http.HTTP'/>
   <inherits name='com.google.gwt.json.JSON'/>
   <inherits name='com.kaboomerang.gwt.rest.REST'/>
+  
+  <!-- Custom JSON Parser Lib -->
+  <inherits name='com.pathf.gwt.util.json.jsonwrapper'/>
 
   <!-- Put Custom Libraries Below -->
 
