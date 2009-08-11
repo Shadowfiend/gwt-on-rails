@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.HashMap;
 import java.beans.PropertyChangeListener; 
 import java.beans.PropertyChangeSupport;
+import com.pathf.gwt.util.json.client.JSONWrapper;
 
 /*
  * Generated Base Class. Do not edit.
