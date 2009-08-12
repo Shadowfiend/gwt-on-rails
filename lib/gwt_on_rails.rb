@@ -12,6 +12,7 @@ module GwtOnRails
     attr_accessor :entry_point
     
     def initialize(name)
+      #puts "Client initialized with name: #{name} (#{name.class}), the first of which is #{name[0]} (#{name[0].class})"
       @name = name.camelize
       @gwt_root = File.join('app', 'gwt')
       @package = @name.downcase
@@ -22,6 +23,7 @@ module GwtOnRails
       @entry_point_package = [@package, 'client'].join('.')
       @entry_point = [@entry_point_package, @name].join('.')
       @resource_package = [@entry_point_package, 'resource'].join('.')
+      puts "Finished initializing the Client class inside GwtOnRails module."
     end
   end
 end
@@ -30,7 +32,7 @@ module ActiveRecord
   class SchemaDumper
     include GwtOnRails
     alias_method :dump_gwt_copy, :dump
-    
+
     RESERVED_JAVA_KEYWORDS = ["abstract", "continue", "for", "new", "switch", "assert", "default", "goto", "package", "synchronized", "boolean", "do", "if", "private", "this", "break", "double", "implements", "protected", "throw", "byte", "else", "import", "public", "throws", "case", "enum", "instanceof", "return", "transient", "catch", "extends", "int", "short", "try", "char", "final", "interface", "static", "void", "class", "finally", "long", "strictfp", "volatile", "const", "float", "native", "super", "while"]
     
     def dump(stream)
@@ -51,6 +53,7 @@ module ActiveRecord
       if File.exists?(gwt_root)
         Dir.foreach(gwt_root) do |dir|
           if (dir.first != '.')
+            puts "dir: #{dir}"
             gwt_client = Client.new dir
             Dir.foreach(gwt_client.resource_path) do |stub|
               if (stub == table.camelize.singularize + '.java')

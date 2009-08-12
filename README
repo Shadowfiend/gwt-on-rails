@@ -69,3 +69,25 @@ be documented as part of the independent GWT-REST Google Code project:
 
 http://github.com/digitaria/gwt-rest
 http://code.google.com/p/gwt-rest/
+
+-------------------------------------------------------------------------------
+Using Eclipse with gwt-on-rails
+-------------------------------------------------------------------------------
+In Eclipse:
+* Create a new GWT 1.7 web application in eclipse. Do not include the Google App Enging plugin.
+* Edit the build path to include the rails source,  output directories, and gwt-rest jars:
+** Right-click on your new project. Select Properties -> Java Build Path
+** "Link Source" -> RAILS_APP/app/gwt/order_dashboard/src
+** "Link Source" -> RAILS_APP/app/gwt/order_dashboard/lib/
+** "Link Source" -> RAILS_APP/public/gwt/
+** Click Ok to apply and close properties.
+** Right-click on lib/gwt-rest.jar -> Build Path -> Add to build path
+
+-------------------------------------------------------------------------------
+Developing gwt-on-rails apps
+-------------------------------------------------------------------------------
+* Start the rails server
+* In a separate terminal, navigate to RAILS_APP and start your GWT app in hosted mode
+** rake order_dashboard:hosted
+* Continue to edit in Eclipse (or any other editor like emacs) and simply refresh to reload GWT source.
+* You can now run your GWT app

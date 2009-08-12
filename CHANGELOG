@@ -1,3 +1,6 @@
+8/10/09:
+- Updated gwt-on-rails generators and templates to rails 2.3.2 compatibility
+- Added instructions on setting up an eclipse project for gwt-on-rails
 1/18/08:
 - Added utility functions to resource/model objects related to property change support
 1/17/08:
